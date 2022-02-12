@@ -16,6 +16,8 @@
             $_SESSION['password'] = $password;
 
             header('location: ../home.php');
+        } else {
+            header('location: ../login.php');
         }
     
     }
