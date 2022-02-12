@@ -11,9 +11,17 @@
         $query = "SELECT * FROM profile WHERE username = '$username' AND password = '$password' ";
         $result = mysqli_query($db, $query);
 
+        $row = mysqli_fetch_assoc($result);
+
+
         if(mysqli_num_rows($result) == 1) {
-            $_SESSION['username'] = $username;
-            $_SESSION['password'] = $password;
+
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['password'] = $row['password'];
+            $_SESSION['tel'] = $row['tel'];
+            $_SESSION['address'] = $row['address'];
 
             header('location: ../home.php');
         } else {
