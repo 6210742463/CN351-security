@@ -1,8 +1,23 @@
+<?php 
+  session_start();
+
+  if (!isset($_SESSION['username'])) {
+    header('location: login.php');
+  }
+  
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: login.php');
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Home</title>
     <style>
        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
@@ -88,6 +103,7 @@
       }
 
       .registerbtn {
+        display: block;
         background-color: lightpink;
         color: white;
         padding: 16px 20px;
@@ -96,6 +112,8 @@
         cursor: pointer;
         width: 100%;
         opacity: 0.9;
+        text-align: center;
+        text-decoration:none;
       }
 
       .registerbtn:hover {
@@ -105,18 +123,14 @@
   </head>
   <body>
     <div class="frame">
-    	<h2>LOG IN</h2>
-    	<div id="error_massage"></div>
-
-    	<form id="myform">
-            <div class="input_field">
-               <input type="text" placeholder="Username" id="username"required>
-            </div>
-            <div class="input_field">
-               <input type="text" placeholder="Password" id="password"required>
-            </div>
-            <button type="submit" class="registerbtn">Log in</button>
-        </form>
+      <?php if (isset($_SESSION['name'])) : ?>
+    	  <h2>HOME</h2>
+        <h3><?php echo $_SESSION['name']; ?></h3>
+    	  <div>
+          <a href="information.php" class="registerbtn"><p>Edit</p></a>
+          <a href="home.php?logout='1'" class="registerbtn"><p>Log out</p></a>
+        </div>
+      <?php endif ?>
     </div>
   </body>
 </html>

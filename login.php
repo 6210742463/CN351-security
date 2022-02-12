@@ -1,8 +1,9 @@
+<?php include('./config/database.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Login</title>
     <style>
        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
@@ -105,13 +106,19 @@
   </head>
   <body>
     <div class="frame">
-    	<h2>HOME</h2>
-      <h3>NAME</h3>
-    	<div>
-        <button type="submit" class="registerbtn">Edit</button>
-        <button type="submit" class="registerbtn">Log out</button> 
-      </div>
+    	<h2>LOG IN</h2>
+    	<div id="error_massage"></div>
 
+    	<form id="myform" action="./config/login_db.php" method="POST">
+            <div class="input_field">
+               <input type="text" placeholder="Username" name="username"required>
+            </div>
+            <div class="input_field">
+               <input type="text" placeholder="Password" name="password"required>
+            </div>
+            <button type="submit" class="registerbtn" name="login_user">Log in</button>
+            <p>Are you not a member ? <a href="register.php">Register</a></p>
+        </form>
     </div>
   </body>
 </html>

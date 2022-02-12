@@ -1,3 +1,4 @@
+<?php include('./config/database.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,6 +59,13 @@
         padding: 10px;
       }
 
+      .frame .input_field input[type="password"],
+      .frame textarea{
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        padding: 10px;
+      }
+
       .frame textarea{
         resize: none;
         height: 80px;
@@ -108,23 +116,27 @@
     	<h2>REGISTER</h2>
     	<div id="error_massage"></div>
 
-    	<form id="myform">
+    	<form id="myform" method="POST" action='./config/register_db.php'>
             <div class="input_field">
-               <input type="text" placeholder="Name" id="name" required>
+               <input type="text" placeholder="Name" name="name" required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Username" id="username"required>
+               <input type="text" placeholder="Username" name="username"required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Password" id="password"required>
+               <input type="password" placeholder="Password" name="password"required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Confirm Password" id="confirm"required>
+               <input type="text" placeholder="Email" name="email"required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Email" id="email"required>
+               <input type="text" placeholder="Tel" name="tel"required>
             </div>
-            <button type="submit" class="registerbtn">Register</button>
+            <div class="input_field">
+               <input type="text" placeholder="Address" name="address"required>
+            </div>
+            <button type="submit" class="registerbtn" name="reg_user">Register</button>
+            <p>Already a member ? <a href="login.php">Login</a></p>
         </form>
     </div>
   </body>

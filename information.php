@@ -1,3 +1,17 @@
+<?php 
+  session_start();
+
+  if (!isset($_SESSION['username'])) {
+    header('location: login.php');
+  }
+  
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: login.php');
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,6 +72,13 @@
         padding: 10px;
       }
 
+      .frame .input_field input[type="password"],
+      .frame textarea{
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        padding: 10px;
+      }
+
       .frame textarea{
         resize: none;
         height: 80px;
@@ -88,6 +109,7 @@
       }
 
       .registerbtn {
+        display: block;
         background-color: lightpink;
         color: white;
         padding: 16px 20px;
@@ -96,6 +118,8 @@
         cursor: pointer;
         width: 100%;
         opacity: 0.9;
+        text-align: center;
+        text-decoration:none;
       }
 
       .registerbtn:hover {
@@ -110,21 +134,25 @@
 
     	<form id="myform">
             <div class="input_field">
-               <input type="text" placeholder="Name" id="name" required>
+               <input type="text" placeholder="Name" name="name" value="<?php echo $_SESSION['name']; ?>" required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Username" id="username"required>
+               <input type="text" placeholder="Username" name="username" value="<?php echo $_SESSION['username']; ?>" required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Email" id="email"required>
+               <input type="password" placeholder="Password" name="password" value="<?php echo $_SESSION['password']; ?>" required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Tel" id="tel"required>
+               <input type="text" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
             </div>
             <div class="input_field">
-               <input type="text" placeholder="Address" id="address"required>
+               <input type="text" placeholder="Tel" name="tel" value="<?php echo $_SESSION['tel']; ?>" required>
+            </div>
+            <div class="input_field">
+               <input type="text" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>" required>
             </div>
             <button type="submit" class="registerbtn">SUBMIT</button>
+            <a href="home.php" class="registerbtn"><p>Back to Home</p></a>
         </form>
     </div>
   </body>
